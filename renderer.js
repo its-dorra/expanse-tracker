@@ -30,9 +30,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const newRow = expenseTable.insertRow();
         const expenseCell = newRow.insertCell(0);
         const priceCell = newRow.insertCell(1);
+        const deleteCell = newRow.insertCell(2);
 
         expenseCell.innerText = expenseName;
         priceCell.innerText = price.toFixed(2);
+
+
+        // Create and add a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.classList.add('delete-btn');
+        deleteButton.addEventListener('click', () => {
+            // Remove the row when the delete button is clicked
+            newRow.remove();
+            updateTotal();  // Update the total after deletion
+        });
+        deleteCell.appendChild(deleteButton);
     }
 
     // Load initial expenses into the table
